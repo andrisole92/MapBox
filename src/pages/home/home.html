@@ -7,12 +7,18 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <h3>Ionic Menu Starter</h3>
+<ion-content class="contentWithMap">
+  <ion-searchbar class="locationSearch"></ion-searchbar>
+  <ion-list>
+    <ion-item *ngFor="let item of items" (click)="itemClick(item.place_id)">
+      {{ item.description}}
+    </ion-item>
+  </ion-list>
 
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.
-  </p>
-
-  <button ion-button secondary menuToggle>Toggle Menu</button>
+  <div id='map' style='width: 100%; height: 100%;'></div>
+  <div block="lot">
+    <div elem="info">
+      <div elem="elem2"></div>
+    </div>
+  </div>
 </ion-content>

@@ -1,3 +1,18 @@
 page-home {
 
 }
+
+.marker-price{
+  background-color: white;
+  border-radius: 3px;
+  padding: 2px;
+}
+
+.contentWithMap > .scroll-content{
+  display: flex;
+  flex-direction: column;
+}
+
+.list, .list-ios {
+  margin: 0;
+}

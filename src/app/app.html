@@ -7,10 +7,22 @@
 
   <ion-content>
     <ion-list>
-      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
+      <button menuClose ion-item lass="text" *ngFor="let p of pages" (click)="openPage(p)">
         {{p.title}}
       </button>
     </ion-list>
+    <ion-item-divider color="primary">
+      My Lots
+      <button menuClose ion-button item-end outline color="light" (click)="addParking({component: ''})">Add New</button>
+    </ion-item-divider>
+    <ion-list>
+      <button menuClose ion-item class="text" *ngFor="let lot of lots | async" (click)="openLotPage(lot.key)">
+        {{lot.location.formatted_address}}
+      </button>
+    </ion-list>
+    <ion-item-divider></ion-item-divider>
+    <button *ngIf="currentUser === null" secondary class="callToAction-button" (click)="login()" ion-button>Sign In</button>
+    <button *ngIf="currentUser !== null" secondary class="callToAction-button" (click)="logout()" ion-button>Sign Out</button>
   </ion-content>
 
 </ion-menu>

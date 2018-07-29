@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { MyApp } from './app.component';
@@ -8,27 +9,52 @@ import { ListPage } from '../pages/list/list';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { LocationProvider } from '../providers/location/location';
+import {AgmCoreModule} from "@agm/core";
+import {AddParkingPage} from "../pages/add-parking/add-parking";
+import {ParkingLotPage} from "../pages/parking-lot/parking-lot";
+import {environment} from "../environments/environment";
+import {AngularFireModule} from "angularfire2";
+import {AngularFireDatabase, AngularFireDatabaseModule} from 'angularfire2/database';
+import {AngularFireAuthModule} from "angularfire2/auth";
+
+
 
 @NgModule({
   declarations: [
     MyApp,
+    AddParkingPage,
     HomePage,
+    ParkingLotPage,
     ListPage
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
+    AngularFireModule.initializeApp(environment.firebase, 'parkin'),
+    AngularFireDatabaseModule,
+    AngularFireAuthModule,
+    AgmCoreModule.forRoot({
+      apiKey: "AIzaSyBH_9k7DQixteDaPBy8ZeN_djwAufCcS1U",
+      libraries: ["places"]
+    }),
+
     IonicModule.forRoot(MyApp),
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
+    AddParkingPage,
     HomePage,
+    ParkingLotPage,
     ListPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    AngularFireDatabase,
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    LocationProvider
   ]
 })
 export class AppModule {}

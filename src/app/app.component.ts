@@ -1,10 +1,18 @@
-import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
+import {Component, ViewChild} from '@angular/core';
+import {Nav, Platform} from 'ionic-angular';
+import {StatusBar} from '@ionic-native/status-bar';
+import {SplashScreen} from '@ionic-native/splash-screen';
 
-import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
+import {HomePage} from '../pages/home/home';
+import {ListPage} from '../pages/list/list';
+import {AddParkingPage} from '../pages/add-parking/add-parking';
+import {AngularFireDatabase, AngularFireList} from "angularfire2/database";
+import {FirebaseListObservable} from "angularfire2/database-deprecated";
+import {Observable} from "rxjs/Observable";
+import {AngularFireAuth} from "angularfire2/auth";
+import {map} from "rxjs/internal/operators";
+import {auth} from "firebase";
+import {ParkingLotPage} from "../pages/parking-lot/parking-lot";
 
 @Component({
   templateUrl: 'app.html'
@@ -13,18 +21,37 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   rootPage: any = HomePage;
+  currentUser: any;
 
-  pages: Array<{title: string, component: any}>;
+  pages: Array<{ title: string, component: any }>;
+  lotsRef: AngularFireList<any>;
+  lots: Observable<any[]>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen,
+              db: AngularFireDatabase, public afAuth: AngularFireAuth) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Home', component: HomePage },
-      { title: 'List', component: ListPage }
+      {title: 'Find Parking', component: HomePage}
     ];
-
+    // showing user lots
+    // window.auth = this.afAuth;
+    // window.nav = this.nav;
+    afAuth.user.subscribe((user) => {
+      console.log(user);
+      if (user && user.uid) {
+        this.currentUser = user;
+        this.lotsRef = db.list('/lots', ref => ref.orderByChild('uuid').equalTo(user.uid));
+        this.lots = this.lotsRef.snapshotChanges().pipe(
+          map(actions =>
+            actions.map(a => ({key: a.key, ...a.payload.val()}))
+          )
+        );
+      } else {
+        this.currentUser = null;
+      }
+    })
   }
 
   initializeApp() {
@@ -39,6 +66,28 @@ export class MyApp {
   openPage(page) {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
-    this.nav.setRoot(page.component);
+    if (this.nav.getActive().component !== page.component) this.nav.push(page.component);
+
   }
+
+  addParking() {
+    console.log('addParking');
+    this.nav.push(AddParkingPage);
+  }
+
+  login() {
+    this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider());
+  }
+
+  logout() {
+    this.afAuth.auth.signOut();
+    window.location.reload();
+
+  }
+
+  openLotPage(key: string) {
+    console.warn('openLotPage ', key);
+    this.nav.push(ParkingLotPage, {key})
+  }
+
 }
