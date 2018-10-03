@@ -1,52 +1,22 @@
-import {Component} from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import {NavController} from 'ionic-angular';
 import {LocationProvider} from "../../providers/location/location"
 import {MapsAPILoader} from '@agm/core';
 import {AngularFireAuth} from 'angularfire2/auth';
 import HTMLMarker from "../../classes/HTMLMarker";
-import {
-  trigger,
-  state,
-  style,
-  animate,
-  transition, keyframes
-} from '@angular/animations';
+import { AnimationService, AnimationBuilder } from 'css-animator';
+
 
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html',
-  animations: [
-    trigger('heroState', [
-      state('inactive', style({
-      })),
-      state('active', style({
-      })),
-      transition('inactive => active',  animate('1s', keyframes ( [
-        style({ scale: 0.95, offset: 0.25 }),
-        style({ scale: 1.1, offset: 0.5 }),
-        style({ scale: 1,   offset: 0.75 })
-      ]))),
-      transition('active => inactive',  animate('1s', keyframes ( [
-        style({ scale: 0.95, offset: 0.25 }),
-        style({ scale: 1.1, offset: 0.5 }),
-        style({ scale: 1,   offset: 0.75 })
-      ]))),
-    ]),
-    trigger('flyInOut', [
-      state('in', style({transform: 'translateX(0)'})),
-      transition('void => *', [
-        style({transform: 'translateX(-100%)'}),
-        animate(100)
-      ]),
-      transition('* => void', [
-        animate(100, style({transform: 'translateX(100%)'}))
-      ])
-    ])
-  ]
+
 
 })
 export class HomePage {
+  @ViewChild('myElement') myElem;
+  private animator: AnimationBuilder;
   map: any = null;
   location: any;
   currentPosition: any = null;
@@ -56,7 +26,9 @@ export class HomePage {
   constructor(public navCtrl: NavController,
               public locationService: LocationProvider,
               private mapsAPILoader: MapsAPILoader,
-              public afAuth: AngularFireAuth) {
+              public afAuth: AngularFireAuth,animationService: AnimationService) {
+    this.animator = animationService.builder();
+
     // window.auth = afAuth;
     afAuth.user.subscribe(
       res => {
@@ -256,7 +228,7 @@ export class HomePage {
       this.myLocationMarker = new google.maps.Marker({
         map: this.map,
         animation: google.maps.Animation.DROP,
-        location: null,
+        position: null,
         icon: "assets/imgs/combinedShape.png"
       });
       this.myLocationMarker.setVisible(false);
@@ -286,7 +258,7 @@ export class HomePage {
       });
 
 
-      window.map = this.map;
+      window['map'] = this.map;
     });
 
   }
@@ -312,7 +284,7 @@ export class HomePage {
     }
   }
 
-  drawLotMarker(location) {
+  drawLotMarker() {
 
     let htmlMarker = new HTMLMarker(56.9561206, 24.33, "$10000", () => {
       console.log('click');

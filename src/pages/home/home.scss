@@ -51,6 +51,8 @@ page-home {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  -webkit-transform: scale(1);
+
   p{
     font-size: 300%;
     font-weight: bold;

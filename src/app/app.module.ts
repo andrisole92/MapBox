@@ -20,6 +20,7 @@ import {AngularFireModule} from "angularfire2";
 import {AngularFireDatabase, AngularFireDatabaseModule} from 'angularfire2/database';
 import {AngularFireAuthModule} from "angularfire2/auth";
 import { BookingsProvider } from '../providers/bookings/bookings';
+import {AnimatesDirective, AnimationService} from "css-animator";
 
 
 
@@ -29,7 +30,8 @@ import { BookingsProvider } from '../providers/bookings/bookings';
     AddParkingPage,
     HomePage,
     ParkingLotPage,
-    ListPage
+    ListPage,
+    AnimatesDirective
   ],
   imports: [
     BrowserModule,
@@ -59,7 +61,8 @@ import { BookingsProvider } from '../providers/bookings/bookings';
     AngularFireDatabase,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     LocationProvider,
-    BookingsProvider
+    BookingsProvider,
+    AnimationService
   ]
 })
 export class AppModule {}

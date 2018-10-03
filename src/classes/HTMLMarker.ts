@@ -38,7 +38,7 @@ export default class HTMLMarker extends google.maps.OverlayView {
     let overlayProjection = this.getProjection();
     let position = overlayProjection.fromLatLngToDivPixel(this.pos);
     let panes = this.getPanes();
-    panes.overlayImage.style.left = position.x - this.div.offsetWidth/2 + 'px';
-    panes.overlayImage.style.top = position.y - 30 + 'px';
+    (<any>panes).overlayImage.style.left = position.x - this.div.offsetWidth/2 + 'px';
+    (<any>panes).overlayImage.style.top = position.y - 30 + 'px';
   }
 }

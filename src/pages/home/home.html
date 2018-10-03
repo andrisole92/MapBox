@@ -16,11 +16,21 @@
   </ion-list>
 
   <div id='map' style='width: 100%; height: 100%;'></div>
-  <div  id="lot" [@heroState]="hState"
-       (@heroState.start)="animationStarted($event)"
-       (@heroState.done)="animationDone($event)"
-       (click)="toggleState()">
-    <p>TAP</p>
+  <!--<div  id="lot" [@heroState]="hState"-->
+  <!--(@heroState.start)="animationStarted($event)"-->
+  <!--(@heroState.done)="animationDone($event)"-->
+  <!--(click)="toggleState()">-->
+  <!--<p>TAP</p>-->
 
+  <!--</div>-->
+  <!--<div id="lot">-->
+  <!--<p>TAP</p>-->
+
+  <div id="lot" animates #animation="animates" text-center>
+    <div (click)="animation.start({type: 'shake', duration: '1000'})">
+      <p>TAP</p>
+    </div>
+    <!--<button ion-button (click)="animation.start({type: 'rubberBand', duration: '1000'})">Click me!</button>-->
   </div>
+  <!--</div>-->
 </ion-content>
