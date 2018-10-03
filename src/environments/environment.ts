@@ -2,11 +2,12 @@ export
 const environment = {
   production: true,
   firebase: {
-    apiKey: "AIzaSyCyQPKHb6xY39BcW481AKkIdlctB_HftOo",
-    authDomain: "parkin-1532626755979.firebaseapp.com",
-    databaseURL: "https://parkin-1532626755979.firebaseio.com",
-    projectId: "parkin-1532626755979",
-    storageBucket: "",
-    messagingSenderId: "604825511924"
+    apiKey: "AIzaSyCv5vFKOY9-jVxGGtxWJi6glBF6WyQpFpo",
+    authDomain: "fairytrail-33178.firebaseapp.com",
+    databaseURL: "https://fairytrail-33178.firebaseio.com",
+
+    projectId: "fairytrail-33178",
+    storageBucket: "fairytrail-33178.appspot.com",
+    messagingSenderId: "97338720144"
   }
 };

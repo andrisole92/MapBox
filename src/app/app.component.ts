@@ -1,4 +1,4 @@
-import {Component, ViewChild} from '@angular/core';
+import {Component, Input, ViewChild} from '@angular/core';
 import {Nav, Platform} from 'ionic-angular';
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
@@ -26,6 +26,8 @@ export class MyApp {
   pages: Array<{ title: string, component: any }>;
   lotsRef: AngularFireList<any>;
   lots: Observable<any[]>;
+  photoUrl: string =  "";
+  test: string = null;
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen,
               db: AngularFireDatabase, public afAuth: AngularFireAuth) {
@@ -41,6 +43,8 @@ export class MyApp {
     afAuth.user.subscribe((user) => {
       console.log(user);
       if (user && user.uid) {
+        // this.photoUrl = user.photoURL;
+        this.test = user.photoURL;
         this.currentUser = user;
         this.lotsRef = db.list('/lots', ref => ref.orderByChild('uuid').equalTo(user.uid));
         this.lots = this.lotsRef.snapshotChanges().pipe(
@@ -50,6 +54,8 @@ export class MyApp {
         );
       } else {
         this.currentUser = null;
+
+
       }
     })
   }
@@ -73,10 +79,26 @@ export class MyApp {
   addParking() {
     console.log('addParking');
     this.nav.push(AddParkingPage);
+
+
+  }
+
+  facebook(){
+    let fb = new auth.FacebookAuthProvider();
+    let gg = new auth.GoogleAuthProvider();
+    this.afAuth.auth.signInWithPopup(fb);
+  }
+
+  googleAuth(){
+    let fb = new auth.FacebookAuthProvider();
+    let gg = new auth.GoogleAuthProvider();
+    this.afAuth.auth.signInWithPopup(gg);
   }
 
   login() {
-    this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider());
+    let fb = new auth.FacebookAuthProvider();
+    let gg = new auth.GoogleAuthProvider();
+    this.afAuth.auth.signInWithPopup(fb);
   }
 
   logout() {

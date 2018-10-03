@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "604825511924",
+    "firebase_url": "https://parkin-1532626755979.firebaseio.com",
+    "project_id": "parkin-1532626755979",
+    "storage_bucket": "parkin-1532626755979.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:604825511924:android:a03ff6b9a66415c5",
+        "android_client_info": {
+          "package_name": "com.Parkin.Space"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "604825511924-oj3qe3cblmer92h4oj4ki6s8lj7n2jac.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBjO3YgpPQen_zXHw22iXa3V3BdwVsvJQg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

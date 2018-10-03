@@ -16,3 +16,101 @@ page-home {
 .list, .list-ios {
   margin: 0;
 }
+
+.arrow_box{
+  display: inline-block;
+}
+
+.arrow_box:hover{
+  cursor: pointer;
+}
+
+.price__inner{
+  background: white;
+  padding: 5px;
+  border-radius: 4px;
+}
+
+.price__inner__text{
+  margin: 0;
+}
+
+#lot{
+  position: absolute;
+  bottom: 16px;
+  width: 90%;
+  height: 100px;
+  background-color: white !important;
+  text-align: center;
+  margin: auto;
+  left: 0;
+  right: 0;
+  border: 1px transparent;
+  border-radius: 5px;
+  padding: 4px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  p{
+    font-size: 300%;
+    font-weight: bold;
+  }
+}
+
+#topPane{
+  width: 100%;
+  padding: 12px;
+  background: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.topPane__box{
+
+  text-align: center;
+  width: 100%;
+  //border-right: 1px solid;
+
+  &:last-child{
+    border-right: none;
+  }
+}
+a[href^="http://maps.google.com/maps"]{display:none !important}
+a[href^="https://maps.google.com/maps"]{display:none !important}
+
+.gmnoprint a, .gmnoprint span, .gm-style-cc {
+  display:none;
+}
+.gmnoprint div {
+  background:none !important;
+}
+
+.lot__info{
+  //border-top: 1px solid;
+  display: flex;
+  flex-direction: row;
+  &__content{
+    flex-grow: 7;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
+#lot__info{
+  &__content {
+    flex-grow: 7;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  &__button{
+  }
+}
+
+#lot__info__button{
+  margin-right: 3px;
+
+}
+

@@ -1,4 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import { ErrorHandler, NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
@@ -17,6 +19,7 @@ import {environment} from "../environments/environment";
 import {AngularFireModule} from "angularfire2";
 import {AngularFireDatabase, AngularFireDatabaseModule} from 'angularfire2/database';
 import {AngularFireAuthModule} from "angularfire2/auth";
+import { BookingsProvider } from '../providers/bookings/bookings';
 
 
 
@@ -30,6 +33,7 @@ import {AngularFireAuthModule} from "angularfire2/auth";
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase, 'parkin'),
     AngularFireDatabaseModule,
@@ -54,7 +58,8 @@ import {AngularFireAuthModule} from "angularfire2/auth";
     SplashScreen,
     AngularFireDatabase,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    LocationProvider
+    LocationProvider,
+    BookingsProvider
   ]
 })
 export class AppModule {}

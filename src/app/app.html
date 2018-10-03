@@ -6,23 +6,34 @@
   </ion-header>
 
   <ion-content>
-    <ion-list>
-      <button menuClose ion-item lass="text" *ngFor="let p of pages" (click)="openPage(p)">
-        {{p.title}}
-      </button>
-    </ion-list>
-    <ion-item-divider color="primary">
-      My Lots
-      <button menuClose ion-button item-end outline color="light" (click)="addParking({component: ''})">Add New</button>
-    </ion-item-divider>
-    <ion-list>
-      <button menuClose ion-item class="text" *ngFor="let lot of lots | async" (click)="openLotPage(lot.key)">
-        {{lot.location.formatted_address}}
-      </button>
-    </ion-list>
+    <!--<ion-list>-->
+      <!--<button menuClose ion-item lass="text" *ngFor="let p of pages" (click)="openPage(p)">-->
+        <!--{{p.title}}-->
+      <!--</button>-->
+    <!--</ion-list>-->
+    <!--<ion-item-divider color="primary">-->
+     <!--{{photoUrl}}-->
+      <!--<button menuClose ion-button item-end outline color="light" (click)="addParking({component: ''})">Add New</button>-->
+    <!--</ion-item-divider>-->
+    <div id="photoWrapper">
+      <img *ngIf="test !== null" style="width: 80px; height: 80px;" src="{{test}}"/>
+    </div>
+    <!--<ion-list>-->
+      <!--<button menuClose ion-item class="text" *ngFor="let lot of lots | async" (click)="openLotPage(lot.key)">-->
+        <!--{{lot.location.formatted_address}}-->
+      <!--</button>-->
+    <!--</ion-list>-->
     <ion-item-divider></ion-item-divider>
-    <button *ngIf="currentUser === null" secondary class="callToAction-button" (click)="login()" ion-button>Sign In</button>
-    <button *ngIf="currentUser !== null" secondary class="callToAction-button" (click)="logout()" ion-button>Sign Out</button>
+    <button class="callToAction-button" ion-button icon-start (click)="facebook()">
+      <ion-icon name="logo-facebook"></ion-icon>
+      Facebook
+    </button>
+    <button color="danger" class="callToAction-button" ion-button icon-start (click)="googleAuth()">
+      <ion-icon name="logo-googleplus"></ion-icon>
+      Google +
+    </button>
+    <!--<button *ngIf="currentUser === null" color="secondary" class="callToAction-button" (click)="login()" ion-button>Sign In</button>-->
+    <button *ngIf="currentUser !== null" color="danger" class="callToAction-button" (click)="logout()" ion-button>Sign Out</button>
   </ion-content>
 
 </ion-menu>

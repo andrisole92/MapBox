@@ -16,9 +16,11 @@
   </ion-list>
 
   <div id='map' style='width: 100%; height: 100%;'></div>
-  <div block="lot">
-    <div elem="info">
-      <div elem="elem2"></div>
-    </div>
+  <div  id="lot" [@heroState]="hState"
+       (@heroState.start)="animationStarted($event)"
+       (@heroState.done)="animationDone($event)"
+       (click)="toggleState()">
+    <p>TAP</p>
+
   </div>
 </ion-content>

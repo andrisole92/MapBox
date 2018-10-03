@@ -20,3 +20,22 @@
   margin: auto;
   width:90%;
 }
+
+#photoWrapper{
+  padding-top: 20px;
+  display: flex;
+  justify-content: center;
+  background: #f7f7f7 !important;
+}
+
+img[src="http://maps.gstatic.com/mapfiles/google_white.png"] {
+  display: none !important;
+}
+
+* {
+  font-family: 'Gloria Hallelujah', cursive;
+}
+
+.callToAction-button{
+  margin-bottom: 20px;
+}
