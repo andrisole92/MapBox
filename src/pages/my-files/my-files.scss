@@ -1,0 +1,19 @@
+page-my-files {
+  display: flex;
+  flex-direction: column;
+}
+#filesPageContainer{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+#fileInput{
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+img {
+  max-width: 100%;
+}

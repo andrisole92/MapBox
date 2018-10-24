@@ -19,8 +19,12 @@ import {environment} from "../environments/environment";
 import {AngularFireModule} from "angularfire2";
 import {AngularFireDatabase, AngularFireDatabaseModule} from 'angularfire2/database';
 import {AngularFireAuthModule} from "angularfire2/auth";
+import { AngularFireStorageModule } from 'angularfire2/storage';
+
 import { BookingsProvider } from '../providers/bookings/bookings';
 import {AnimatesDirective, AnimationService} from "css-animator";
+import { AnimatorModule } from 'css-animator';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 
 
@@ -31,15 +35,16 @@ import {AnimatesDirective, AnimationService} from "css-animator";
     HomePage,
     ParkingLotPage,
     ListPage,
-    AnimatesDirective
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase, 'parkin'),
+    AngularFireStorageModule,
     AngularFireDatabaseModule,
     AngularFireAuthModule,
+    AnimatorModule,
     AgmCoreModule.forRoot({
       apiKey: "AIzaSyBH_9k7DQixteDaPBy8ZeN_djwAufCcS1U",
       libraries: ["places"]
@@ -62,7 +67,7 @@ import {AnimatesDirective, AnimationService} from "css-animator";
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     LocationProvider,
     BookingsProvider,
-    AnimationService
+    InAppBrowser
   ]
 })
 export class AppModule {}

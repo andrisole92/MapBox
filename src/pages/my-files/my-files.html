@@ -1,0 +1,21 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>myFiles</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <div id="filesPageContainer">
+    <div id="fileInput">
+      <input type="file" accept="image/*" (change)="uploadFile($event)"/>
+    </div>
+    <div>{{ uploadPercent | async }}</div>
+    <div *ngIf="downloadURL !== null">
+      <a *ngIf="downloadURL !== null" [href]="downloadURL | async">{{ downloadURL | async }}</a>
+      <img [src]="downloadURL | async"/>
+    </div>
+  </div>
+</ion-content>

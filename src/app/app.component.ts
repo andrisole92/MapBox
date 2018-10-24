@@ -20,7 +20,7 @@ import {ParkingLotPage} from "../pages/parking-lot/parking-lot";
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = HomePage;
+  rootPage: any = 'MyFilesPage';
   currentUser: any;
 
   pages: Array<{ title: string, component: any }>;
